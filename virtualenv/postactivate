@@ -1,0 +1,7 @@
+#!/bin/bash
+# This hook is sourced after every virtualenv is activated.
+
+PROJECT_NAME=$(basename $VIRTUAL_ENV)
+if [[ -d $HOME/projects/$PROJECT_NAME ]]; then
+    cd $HOME/projects/$PROJECT_NAME
+fi
