@@ -118,3 +118,7 @@ fi
 
 WORKON_HOME=~/envs
 source /usr/local/bin/virtualenvwrapper.sh
+
+function keys() {
+    eval $(ssh-agent) && ssh-add
+}
