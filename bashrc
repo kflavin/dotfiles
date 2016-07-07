@@ -28,6 +28,16 @@ export VIRTUALENV_USE_DISTRIBUTE=1
 export PIP_RESPECT_VIRTUALENV=true
 source /usr/local/bin/virtualenvwrapper.sh
 
+# Quickly move between environment and project files
+function cde {
+    VIRTUAL_ENV=/home/yay/envs/bottle
+    cd $VIRTUAL_ENV/lib/python*/site-packages
+}
+
+function cdp {
+    cd $PROJECT_DIR
+}
+
 # Django
 source ~/bin/make_django_project
 

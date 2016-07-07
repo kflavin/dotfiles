@@ -1,7 +1,8 @@
 #!/bin/bash
 # This hook is sourced after a new virtualenv is activated.
 
-PROJECT_NAME=$(basename $VIRTUAL_ENV)
+export PROJECT_NAME=$(basename $VIRTUAL_ENV)
 mkdir -p $HOME/projects/$PROJECT_NAME
 add2virtualenv $HOME/projects/$PROJECT_NAME
-cd $HOME/projects/$PROJECT_NAME
+export PROJECT_DIR=$HOME/projects/$PROJECT_NAME
+cd $PROJECT_DIR

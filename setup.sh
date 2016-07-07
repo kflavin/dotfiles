@@ -22,6 +22,9 @@ function install_rvm {
 # Setup python dev environment
 sudo pip install virtualenvwrapper
 
+mkdir ~/envs
+cp ./virtualenv/* ~/envs/
+
 # Ruby
 install_rvm
 

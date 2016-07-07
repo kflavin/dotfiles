@@ -1,7 +1,8 @@
 #!/bin/bash
 # This hook is sourced after every virtualenv is activated.
 
-PROJECT_NAME=$(basename $VIRTUAL_ENV)
+export PROJECT_NAME=$(basename $VIRTUAL_ENV)
 if [[ -d $HOME/projects/$PROJECT_NAME ]]; then
-    cd $HOME/projects/$PROJECT_NAME
+    export PROJECT_DIR=$HOME/projects/$PROJECT_NAME
+    cd $PROJECT_DIR
 fi
