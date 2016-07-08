@@ -18,10 +18,10 @@ function twos {
      echo "Need negative number."
      return 1
  fi
- echo $((~$1+1)) 
+ echo $((~$1+1))
 }
 
-# virtualenvwrapper 
+# virtualenvwrapper
 export WORKON_HOME=~/envs
 export PROJECT_HOME=~/projects
 export VIRTUALENV_USE_DISTRIBUTE=1
@@ -30,8 +30,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # Quickly move between environment and project files
 function cde {
-    VIRTUAL_ENV=/home/yay/envs/bottle
-    cd $VIRTUAL_ENV/lib/python*/site-packages
+    VENV=/home/yay/envs/$PROJECT_NAME
+    cd $VENV/lib/python*/site-packages
 }
 
 function cdp {

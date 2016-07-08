@@ -3,9 +3,7 @@
 sudo -v
 
 # setup bashrc
-if [ ! -f ~/.bashrc_mine ]; then
-    cp ./bashrc ~/.bashrc_mine
-fi
+cp -i ./bashrc ~/.bashrc_mine
 
 grep -q 'source ~/.bashrc_mine' ~/.bashrc
 if [ $? -ne 0 ]; then
@@ -14,16 +12,19 @@ if [ $? -ne 0 ]; then
 fi
 
 function install_rvm {
-  sudo curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-  sudo curl -sSL https://get.rvm.io | bash -s stable --ruby
+    if [ \! $(which rvm) ]; then
+        sudo curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+        sudo curl -sSL https://get.rvm.io | bash -s stable --ruby
+    fi
 }
 
-
-# Setup python dev environment
-sudo pip install virtualenvwrapper
-
-mkdir ~/envs
+# Setup our basic directory structure
+test -d ~/envs || mkdir ~/envs
+test -d ~/projects || mkdir ~/projects
 cp ./virtualenv/* ~/envs/
+
+# Setup python dev environment (environment configured in .bashrc_mine)
+sudo pip install virtualenvwrapper
 
 # Ruby
 install_rvm
