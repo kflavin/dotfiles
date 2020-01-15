@@ -3,7 +3,7 @@ export DOTFILES=$HOME/.dotfiles
 
 # Config files end in *.zsh.  Create an array of them.
 typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+config_files=($DOTFILES/**/*.zsh)
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -20,8 +20,8 @@ done
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-    source file
-end
+    source $file
+done
 
 ## initialize autocomplete here, otherwise functions won't be loaded
 #autoload -U compinit
