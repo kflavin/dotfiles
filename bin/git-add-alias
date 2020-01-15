@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+for arg in ARGV
+    puts arg
+end
+
+#git config --global alias.$1 '!git upstream && git reset --hard $(git upstream)'

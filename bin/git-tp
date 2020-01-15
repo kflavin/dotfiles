@@ -2,6 +2,6 @@
 
 ((!$#)) && echo No branch name, command ignored! && exit 1
 
-d=$(date '+%Y.%M.%d.%s')
+d=$(date '+%Y.%m.%d.%s')
 git tag -a "$d" -m "$1"
 
