@@ -1,13 +1,22 @@
 #!/usr/bin/env ruby
 
+
+def help
+    puts "Usage: git add-alias co='checkout -b'"
+    exit 1
+end
+
+if !ARGV[0]
+    help
+end
+
 name,value = ARGV[0].split("=")
 
 if !name.empty? and !value.empty?
     puts "Creating alias #{name}='#{value}'"
     system("git config --global alias.#{name} '#{value}'")
 else
-    puts "Usage: git add-alias co='checkout -b'"
-    exit 1
+    help
 end
 
 #git config --global alias.$1 '!git upstream && git reset --hard $(git upstream)'
