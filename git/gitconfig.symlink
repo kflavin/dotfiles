@@ -11,7 +11,6 @@
 	unstage = reset
 	upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
 	ureset = !git upstream && git reset --hard $(git upstream)
-	addalias = config --global alias.
 [core]
 	pager = less -F -X
 [hub]
