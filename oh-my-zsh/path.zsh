@@ -1,2 +1,2 @@
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
+export ZSH_THEME="robbyrussell"
