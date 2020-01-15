@@ -1,2 +1,2 @@
-fpath=($ZSH/functions $fpath)
-echo fpath=$fpath
+#fpath=($ZSH/functions $fpath)
+#echo fpath=$fpath
