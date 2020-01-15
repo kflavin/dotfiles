@@ -4,6 +4,7 @@
 	cm = commit -a
 	co = checkout
 	current-branch = rev-parse --abbrev-ref HEAD
+	d = diff
 	glog = log -E -i --grep
 	issues = !hub browse -- issues
 	rim = !git rebase --interactive $(git merge-base master HEAD)

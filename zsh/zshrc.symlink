@@ -44,7 +44,15 @@ done
 #bindkey "^[[A" up-line-or-beginning-search # Up
 #bindkey "^[[B" down-line-or-beginning-search # Down
 
-
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  #git
+  ssh-agent
+)
 
 ## No arguments: `git status`
 # With arguments: acts like `git`
