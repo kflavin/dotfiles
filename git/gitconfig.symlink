@@ -1,5 +1,5 @@
 [include]
-	path = ~/.gitconfig.loca
+	path = ~/.gitconfig.local
 [alias]
 	co = checkout
 	current-branch = rev-parse --abbrev-ref HEAD
