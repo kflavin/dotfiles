@@ -1,6 +1,7 @@
 [include]
 	path = ~/.gitconfig.local
 [alias]
+	cm = commit -a
 	co = checkout
 	current-branch = rev-parse --abbrev-ref HEAD
 	glog = log -E -i --grep
