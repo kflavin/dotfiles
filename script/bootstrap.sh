@@ -1,25 +1,10 @@
 #!/usr/bin/env bash
 
-cd "$(dirname $0)/.."
-DOTFILES_ROOT=$(pwd -P)
-
 set -e
 
-info() {
-    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
-}
-
-user() {
-    printf "\r  [ \033[00;33m??\033[0m ] $1\n"
-}
-
-success() {
-    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
-}
-
-fail() {
-    printf "\r\033[2K  [ \033[00;31mFAIL\033[0m ] $1\n"
-}
+cd "$(dirname $0)/.."
+DOTFILES_ROOT=$(pwd -P)
+source $DOTFILES_ROOT/script/lib/functions.sh
 
 setup_gitconfig() {
     if [[ ! -f git/gitconfig.local.symlink ]]; then
@@ -110,10 +95,9 @@ install_dotfiles() {
 
 }
 
-if [[ "$(uname -s)" == "Darwin" ]]; then
-    info "installing mac dependencies"
-fi
+#if [[ "$(uname -s)" == "Darwin" ]]; then
+#    info "installing mac dependencies"
+#fi
 
-info DOTFILES_ROOT: $DOTFILES_ROOT
 setup_gitconfig
 install_dotfiles
