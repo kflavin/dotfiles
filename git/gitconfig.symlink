@@ -20,3 +20,5 @@
 	pager = less -F -X
 [hub]
 	protocol = https
+[fetch]
+	prune = true
