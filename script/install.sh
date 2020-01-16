@@ -3,7 +3,7 @@
 # This will install software onto the host.
 
 cd "$(dirname $0)/.."
-source $DOTFILES/script/lib/functions.sh
+source ./script/lib/functions.sh
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     info "installing mac dependencies"

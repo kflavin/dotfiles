@@ -2,14 +2,18 @@
 
 set -e
 #cd $(dirname $0)../../
-source $DOTFILES/script/lib/functions.sh
+source ./script/lib/functions.sh
 
-# Need for YCM
-brew install cmake
-brew install vim
-
-if test $(which python); then
-    $DOTFILES/vim/vim.symlink/bundle/YouCompleteMe/install.py
-else
-    warn "Python not found, skipping YCM for vim installation."
+# Packages for YCM
+if test ! $(which cmake); then
+    # cmake exits with non-zero code if it already exists
+    #brew install cmake
+    echo "asdf"
 fi
+#brew install vim
+#
+#if test $(which python); then
+#    $DOTFILES/vim/vim.symlink/bundle/YouCompleteMe/install.py
+#else
+#    warn "Python not found, skipping YCM for vim installation."
+#fi
