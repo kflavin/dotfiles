@@ -1,3 +1,5 @@
+# Generated with "helm completion zsh"
+
 #compdef helm
 
 __helm_bash_source() {
