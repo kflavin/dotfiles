@@ -262,3 +262,5 @@ fun! TrimWhitespace()
 endfun
 command! TrimWhitespace call TrimWhitespace()
 :noremap <Leader>w :call TrimWhitespace()<CR>
+
+noremap <Leader>/ :Commentary<cr>

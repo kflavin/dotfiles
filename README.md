@@ -14,3 +14,6 @@ git clone git@github.com:kflavin/vim.git ~/.dotfiles
 `setup.sh` contains old commands.
 
 
+### Add new submodule to vim
+
+git submodule add git://github.com/tpope/vim-commentary.git vim/vim.symlink/bundle/commentary
