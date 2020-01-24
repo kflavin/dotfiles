@@ -1,7 +1,8 @@
 [include]
 	path = ~/.gitconfig.local
 [alias]
-	cm = commit -a
+	cm = commit
+	cma = commit -a
 	co = checkout
 	current-branch = rev-parse --abbrev-ref HEAD
 	d = diff
