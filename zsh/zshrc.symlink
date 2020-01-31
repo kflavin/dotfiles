@@ -66,3 +66,7 @@ g() {
 
 # Complete g like git
 compdef g=git
+
+# Bind forward and back words
+bindkey "^[^[[C" forward-word
+bindkey "^[^[[D" backward-word
