@@ -1,8 +1,9 @@
 
+set -e
 # read output from "heroku config -a rxvantage-api-test"
 
-$APP=$1
-$FILE=$2
+APP="$1"
+FILE="$2"
 
 IFS=
 while read -r line; do
