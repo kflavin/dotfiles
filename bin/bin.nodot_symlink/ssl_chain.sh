@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get the chain like this, and write it to file.  Then pass that as $chain_pem:
+# echo | openssl s_client -showcerts -connect mysite.com:443 2>/dev/null | sed -n -e '/BEGIN\ CERTIFICATE/,/END\ CERTIFICATE/ p' > ~/chain.pem
+
 
 # You can also get the subject/issuer of each certificate from a chain like this:
 # openssl crl2pkcs7 -nocrl -certfile chain | openssl pkcs7 -print_certs -noout
