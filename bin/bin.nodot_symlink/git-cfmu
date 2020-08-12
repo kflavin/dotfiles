@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+
+def help
+    puts "Usage: git cfm [remote] <branch>"
+    exit 1
+end
+
+if !ARGV[0]
+    help
+elsif ARGV[0]
+    if ARGV[1]
+        remote = ARGV[0]
+        branch = ARGV[1]
+    else
+        remote = "upstream"
+        branch = ARGV[0]
+    end
+end
+
+
+if !branch.empty? && !remote.empty?
+    puts "Checkout #{branch} and merge from #{remote}"
+    system("git checkout #{branch} && git fetch --all && git merge #{remote}/#{branch}")
+else
+    help
+end
+
+#git config --global alias.$1 '!git upstream && git reset --hard $(git upstream)'
