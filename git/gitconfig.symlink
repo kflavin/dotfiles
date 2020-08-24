@@ -6,10 +6,14 @@
 	co = checkout
 	current-branch = rev-parse --abbrev-ref HEAD
 	d = diff
+	fa = fetch --all
+    fmu = !git fa && git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	find = !git log --color -p -S 
 	glog = log -E -i --grep
 	issues = !hub browse -- issues
+    recentbr = for-each-ref --sort=committerdate --format='"%(objectname) %(objecttype)%09%(refname:short)"' refs/heads/
 	mup = !git checkout master && git pull && git checkout -
+    mu = !git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	rim = !git rebase --interactive $(git merge-base master HEAD)
 	riu = !git rebase --interactive $(git upstream)
 	sl = log --date=format:'%D %T' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ad%C(reset)] %s'

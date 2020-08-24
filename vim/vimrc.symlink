@@ -87,6 +87,9 @@ cmap w!! w !sudo tee > /dev/null %
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_cmd = 'CtrlP'
 
+" Ignore some files
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|bundle)$'
+
 "map <leader>e :edit %%
 "map <leader>v :view %%
 
@@ -264,3 +267,6 @@ command! TrimWhitespace call TrimWhitespace()
 :noremap <Leader>w :call TrimWhitespace()<CR>
 
 noremap <Leader>/ :Commentary<cr>
+
+" Set maxmempattern for regex that take a lot of memory
+set mmp=5000
