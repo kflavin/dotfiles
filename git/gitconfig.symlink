@@ -14,6 +14,7 @@
     recentbr = for-each-ref --sort=committerdate --format='"%(objectname) %(objecttype)%09%(refname:short)"' refs/heads/
 	mup = !git checkout master && git pull && git checkout -
     mu = !git merge upstream/$(git rev-parse --abbrev-ref HEAD)
+	pushf = push --force-with-lease
 	rim = !git rebase --interactive $(git merge-base master HEAD)
 	riu = !git rebase --interactive $(git upstream)
 	sl = log --date=format:'%D %T' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ad%C(reset)] %s'
