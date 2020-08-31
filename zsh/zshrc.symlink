@@ -70,3 +70,6 @@ compdef g=git
 # Bind forward and back words
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
+
+export HISTSIZE=999999999
+export SAVEHIST=$HISTSIZE
