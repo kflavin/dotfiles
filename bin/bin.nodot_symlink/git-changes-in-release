@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+
+def help
+    puts "Usage: git changes-in-release tag1 tag2"
+    exit 1
+end
+
+if !ARGV[0] || !ARGV[1]
+    help
+else
+    tag1 = ARGV[0]
+    tag2 = ARGV[1]
+end
+
+system("git log #{tag1}..#{tag2} --pretty=oneline | grep -E -o '(\\w+)-(\\d+)' | sort | uniq")
