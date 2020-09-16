@@ -9,6 +9,7 @@
 	d = diff
 	fa = fetch --all
     ff = log --follow -p --
+    fh = file-history
     fmu = !git fa && git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	find = !git log --color -p -S 
 	glog = log -E -i --grep
