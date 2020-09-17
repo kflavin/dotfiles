@@ -19,3 +19,10 @@ issue_prefix = ARGV[0]
 range = ARGV[1]
 
 system("git log #{range} --pretty=oneline | grep -E -i -o '#{issue_prefix}-(\\d+)' | sort | uniq")
+
+
+# For echoing a link to screen
+# override for something more project specific in ~/.bin_local
+#%[echo -e '\e]8;;\linkaissue\e]8;;\a']
+#system("echo '\e]8;;http://google.com\a#{issue}\e]8;;\a'")
+#echo -e '\e]8;;http://example.com\aThis is a link\e]8;;\a'
