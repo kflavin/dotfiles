@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+################################
+# git issues
+#  Show issues in two versions
+################################
+
+
+def help
+    puts "Usage: git issues <prefix> <commit range>"
+    puts "  Show issues added between two versions"
+    exit 1
+end
+
+if !ARGV[0] && !ARGV[1]
+    help
+end
+
+issue_prefix = ARGV[0]
+range = ARGV[1]
+
+system("git log #{range} --pretty=oneline | grep -E -i -o '#{issue_prefix}-(\\d+)' | sort | uniq")
