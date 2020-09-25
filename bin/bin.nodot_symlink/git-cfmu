@@ -21,7 +21,7 @@ end
 
 if !branch.empty? && !remote.empty?
     puts "Checkout #{branch} and merge from #{remote}"
-    system("git checkout #{branch} && git fetch --all && git merge #{remote}/#{branch}")
+    system("git checkout #{branch} && git fetch #{remote} && git merge #{remote}/#{branch}")
 else
     help
 end
