@@ -4,6 +4,7 @@
     changes = "!f() { git log ${1}...${2} --pretty='%C(auto)%h %s - %an' | sort -k2; }; f"
 	cm = commit
 	cma = commit -a
+	contains = branch -a --contains
 	co = checkout
 	cp = cherry-pick
 	current-branch = rev-parse --abbrev-ref HEAD
