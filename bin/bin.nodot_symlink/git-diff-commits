@@ -1,6 +1,3 @@
 #!/bin/bash
 
-f() { 
-    diff <(git show --pretty='' $1) <(git show --pretty='' $2)
-};
-f
+diff <(git show --pretty='' $1) <(git show --pretty='' $2)
