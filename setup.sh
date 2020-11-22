@@ -5,6 +5,9 @@ sudo -v
 # setup bashrc
 cp -i ./bashrc ~/.bashrc_mine
 
+# Local bin directory
+mkdir ~/.bin_local
+
 grep -q 'source ~/.bashrc_mine' ~/.bashrc
 if [ $? -ne 0 ]; then
     echo '# Source my configuration' >> ~/.bashrc

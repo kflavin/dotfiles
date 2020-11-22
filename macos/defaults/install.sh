@@ -16,6 +16,8 @@ brew install \
   git-gui \
   gnupg \
   gpg \
+  heroku \
+  heroku-node \
   jsc \
   jsonlint \
   mapnik

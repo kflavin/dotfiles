@@ -2,9 +2,10 @@
 	path = ~/.gitconfig.local
 [alias]
     changes = "!f() { git log ${1}...${2} --pretty='%C(auto)%h %s - %an' | sort -k2; }; f"
+    changes2 = "!f() { git log ${1}...${2} --pretty='%C(auto)%h %s - %an'; }; f"
 	cm = commit
 	cma = commit -a
-	contains = branch -a --contains
+    contains = "!f() { git branch -a --contains $1 | grep -E 'master|rel-' | xargs basename | sort | uniq | grep -v -E '[*]'; }; f"
 	co = checkout
 	cp = cherry-pick
 	current-branch = rev-parse --abbrev-ref HEAD
@@ -13,6 +14,7 @@
 	fa = fetch --all
     ff = log --follow -p --
     fh = file-history
+    fu = fetch upstream
     fmu = !git fetch upstream && git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	find = !git log --color -p -S 
 	glog = log -E -i --grep
@@ -21,8 +23,9 @@
 	mup = !git checkout master && git pull && git checkout -
     mu = !git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	pushf = push --force-with-lease
+    rh = reset --hard
 	rim = !git rebase --interactive $(git merge-base master HEAD)
-	riu = !git rebase --interactive $(git upstream)
+	rium = !git fetch upstream && git rebase --interactive upstream/master
 	sl = log --date=format:'%D %T' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ad%C(reset)] %s' --graph
 	sla = log --oneline --decorate --graph --all
 	uncommit = reset --soft HEAD^
@@ -36,3 +39,13 @@
 	protocol = https
 [fetch]
 	prune = true
+
+[delta]
+	side-by-side = true
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
