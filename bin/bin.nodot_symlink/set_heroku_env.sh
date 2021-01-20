@@ -1,6 +1,10 @@
 
 set -e
 # read output from "heroku config -a rxvantage-api-test"
+#
+#
+#heroku config -s -a rxvantage-api > configs.txt
+#cat configs.txt | tr '\n' ' ' | xargs heroku config:set -a rxvantage-api-clone
 
 APP="$1"
 FILE="$2"

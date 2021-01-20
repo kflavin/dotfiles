@@ -7,3 +7,7 @@ m () {
         microk8s --help
     fi
 }
+
+mk () {
+    microk8s kubectl $@
+}
