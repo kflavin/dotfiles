@@ -11,3 +11,12 @@ m () {
 mk () {
     microk8s kubectl $@
 }
+
+mp () {
+    if [[ $# > 0 ]]
+    then
+        multipass $@
+    else
+        multipass list
+    fi
+}
