@@ -73,3 +73,6 @@ bindkey "^[^[[D" backward-word
 
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
+
+# Did Terraform add this?  Doesn't seem to be needed.
+#autoload -U +X bashcompinit && bashcompinit
