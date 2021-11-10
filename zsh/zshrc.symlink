@@ -71,8 +71,14 @@ compdef g=git
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 
+# ZSH history settings
+# https://unix.stackexchange.com/a/575102/166026
+HISTFILE=$HOME/.zsh_history
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
+setopt appendhistory
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
 # Terraform
 autoload -U +X bashcompinit && bashcompinit
