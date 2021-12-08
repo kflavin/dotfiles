@@ -20,3 +20,8 @@ mp () {
         multipass list
     fi
 }
+
+
+function pubip() {
+    aws ec2 describe-instances --instance-ids $(kubectl get nodes "$1" -o json | jq -r '.metadata.labels["alpha.eksctl.io/instance-id"]') --query 'Reservations[*].Instances[*].PublicIpAddress' --no-cli-pager
+}
