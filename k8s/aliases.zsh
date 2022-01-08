@@ -14,3 +14,7 @@ alias byns-all="kubectl get pod -o=custom-columns=NS:.metadata.namespace,NAME:.m
 
 
 alias nodes='kubectl get nodes --sort-by=".metadata.labels.eks\.amazonaws\.com\/nodegroup" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.eks\.amazonaws\.com\/nodegroup,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type"'
+
+
+# EKS Add on versions
+alias kaddons='k -n kube-system describe daemonset aws-node efs-csi-node kube-proxy | grep Image: | rev | cut -d/ -f1 | rev'
