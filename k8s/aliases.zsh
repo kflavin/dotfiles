@@ -13,7 +13,7 @@ alias bypod-all="kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.s
 alias byns-all="kubectl get pod -o=custom-columns=NS:.metadata.namespace,NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --sort-by=.metadata.namespace -A"
 
 
-alias nodes='kubectl get nodes --sort-by=".metadata.labels.eks\.amazonaws\.com\/nodegroup" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.eks\.amazonaws\.com\/nodegroup,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type"'
+alias nodes='kubectl get nodes --sort-by=".metadata.labels.eks\.amazonaws\.com\/nodegroup" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.eks\.amazonaws\.com\/nodegroup,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone"'
 
 
 # EKS Add on versions
