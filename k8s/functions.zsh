@@ -29,3 +29,7 @@ function pubip() {
 function privip() {
     aws ec2 describe-instances --filter Name=ip-address,Values=$1 --query 'Reservations[*].Instances[*].PrivateDnsName' --no-cli-pager
 }
+
+function helmuninstall() {
+    helm -n $1 uninstall backend && helm -n $1 uninstall deps
+}
