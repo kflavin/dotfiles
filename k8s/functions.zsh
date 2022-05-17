@@ -31,5 +31,5 @@ function privip() {
 }
 
 function helmuninstall() {
-    helm -n $1 uninstall backend && helm -n $1 uninstall deps
+    helm -n $1 uninstall --wait backend && helm -n $1 uninstall deps
 }
