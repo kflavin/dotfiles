@@ -76,6 +76,7 @@ bindkey "^[^[[D" backward-word
 HISTFILE=$HOME/.zsh_history
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
+export HISTCONTROL=ignoreboth
 setopt appendhistory
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
