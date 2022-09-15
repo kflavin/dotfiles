@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+
+def help
+    puts "Usage: git recent-changes <days>"
+    exit 1
+end
+
+if !ARGV[0]
+    help
+end
+
+days = ARGV[0]
+system("git log --pretty=format: --name-only --since='#{days} days ago' | grep -v '^$' | sort | uniq -c")
+

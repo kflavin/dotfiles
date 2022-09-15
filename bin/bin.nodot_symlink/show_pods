@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+
+get_nodes = 'kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone"'
+
+get_nodes = 'kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,AZ:.metadata.labels.topology\.kubernetes\.io\/zone"'
+
+get_pods = 'kubectl get pod -o=custom-columns=NAME:.metadata.name,NODE:.spec.nodeName -A'
+
+nodes = `#{get_nodes}`
+pods = `#{get_pods}`
+
+nodes = nodes.split(/\n/)[1..-1]
+pods = pods.split(/\n/)[1..-1]
+
+groups = nodes.map do |node|
+  name, role, nodegroup, az = node.split
+  n = {}
+  n[name] = [role, nodegroup, az]
+  n
+end
+
+
+node_groups = groups.inject({}) do |h,v|
+  h.merge(v)
+end
+
+
+
+pod_groups = pods.map do |pod|
+  pod, name = pod.split
+  {name: name, pod: pod  }
+end
+
+#puts node_groups
+
+printf "%-35s%-55s%-35s%-35s%-35s\n", "NAME", "POD", "ROLE", "NODEGROUP", "REGION"
+pod_groups.each do |node|
+  node_details = node_groups[node[:name]]
+  #node_details = "%-35s%-35s%-35s", node_details
+  name = node[:name]
+  pod = node[:pod]
+
+  printf("%-35s%-55s", name, pod)
+  printf("%-35s%-35s%-35s\n", *node_details)
+end
