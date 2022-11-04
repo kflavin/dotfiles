@@ -21,7 +21,8 @@ alias bypod-all="kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.s
 alias byns-all="kubectl get pod -o=custom-columns=NS:.metadata.namespace,NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --sort-by=.metadata.namespace -A"
 
 
-alias nodes='kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone"'
+#alias nodes='kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone"'
+alias nodes='kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone,ID:.metadata.annotations.csi\.volume\.kubernetes\.io\/nodeid" | sed -E "s/{\"efs.csi.aws.com\":\"(i-[^\"]*)\"}/\1/"'
 
 
 # EKS Add on versions
