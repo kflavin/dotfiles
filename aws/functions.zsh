@@ -15,3 +15,7 @@ function checkrunners {
     jump 'bash -c "for i in '$(ghrunners)'; do echo \$i; ssh -o StrictHostKeyChecking=false \$i which docker; done"'
 }
 
+
+function instance_types {
+    aws ec2 describe-instance-types | jq -r '["InstanceType", "VCpus", "Cores", "Mem", "EBS Opt", "Network"], (.InstanceTypes[] | [.InstanceType, .VCpuInfo.DefaultVCpus, .VCpuInfo.DefaultCores, .MemoryInfo.SizeInMiB, .EbsInfo.EbsOptimizedSupport, .NetworkInfo.NetworkPerformance]) | @tsv' | sort | more
+}
