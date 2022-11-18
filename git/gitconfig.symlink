@@ -2,7 +2,7 @@
 	path = ~/.gitconfig.local
 [alias]
     changes = "!f() { git log ${1}...${2} --pretty='%C(auto)%h %s - %an' | sort -k2; }; f"
-    changes2 = "!f() { git log ${1}...${2} --pretty='%C(auto)%h %s - %an'; }; f"
+    changes2 = "!f() { git log ${1}...${2} --pretty='%C(auto)%h %C(cyan)%C(bold)%ad%Creset %s  %an'; }; f"
 	cm = commit
 	cma = commit -a
     contains = "!f() { git branch -a --contains $1 | grep -E 'master|rel-' | xargs basename | sort | uniq | grep -v -E '[*]'; }; f"
@@ -32,7 +32,8 @@
 	unstage = reset
 	upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
 	ureset = !git upstream && git reset --hard $(git upstream)
-	whatadded = log --diff-filter=A
+	whoadded = log --diff-filter=A
+    whodeleted = log --full-history -1 -- 
 [core]
 	pager = less -F -X
 [hub]
@@ -49,3 +50,7 @@
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
+[user]
+	signingkey = 0685992BE2435608
+[gpg]
+	program = /usr/local/bin/gpg
