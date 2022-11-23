@@ -33,3 +33,8 @@ function privip() {
 function helmuninstall() {
     helm -n $1 uninstall --wait backend && helm -n $1 uninstall deps && kubectl delete ns $1
 }
+
+
+function watchpods() {
+    watch -n.1 -d "kubectl -n $1 get pods"
+}
