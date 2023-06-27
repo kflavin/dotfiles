@@ -1,3 +1,4 @@
+#!/usr/bin/env sh -e
 
 # Brew needs to be setup first
 [[ ! -x $(which brew) ]] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || echo "Brew already installed"
@@ -13,11 +14,9 @@ brew install \
   awscli \
   bitrise \
   certbot \
-  certbot \
   circleci \
   cloc \
   fastlane \
-  fork \
   git-delta \
   git-gui \
   gnupg \
@@ -25,11 +24,8 @@ brew install \
   jenv \
   jq \
   jsonlint \
-  mapnik \
-  meld \
   pusher/brew/pusher \
   ripgrep \
-  sourcetree \
   unix2dos \
   yamllint
 
