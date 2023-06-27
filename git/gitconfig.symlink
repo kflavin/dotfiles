@@ -36,6 +36,7 @@
     whodeleted = log --full-history -1 -- 
 [core]
 	pager = less -F -X
+	excludesfile = /Users/kyleflavin/.gitignore_global
 [hub]
 	protocol = https
 [fetch]
