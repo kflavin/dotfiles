@@ -2,7 +2,7 @@
 
 ```bash
 # Clone repository into ~/.dotfiles
-git clone git@github.com:kflavin/vim.git ~/.dotfiles
+git clone git@github.com:kflavin/dotfiles.git ~/.dotfiles
 
 #Initialize dotfiles
 ./script/bootstrap.sh
