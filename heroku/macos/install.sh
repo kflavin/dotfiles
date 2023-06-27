@@ -1,3 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env sh -e
 
-[[ ! -x $(which heroku) ]] && brew tap heroku/brew && brew install heroku
+if [[ ! -x $(which heroku) ]]; then
+    brew tap heroku/brew && brew install heroku
+fi

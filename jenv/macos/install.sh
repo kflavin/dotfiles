@@ -1,3 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env sh -e
 
-[[ ! -x $(which jenv) ]] && brew install jenv
+if [[ ! -x $(which jenv) ]]; then
+    brew install jenv
+fi
