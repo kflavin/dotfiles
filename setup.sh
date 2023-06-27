@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#################
+# OLD: Do Not Run
+##################
+
 sudo -v
 
 # setup bashrc
