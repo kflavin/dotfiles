@@ -1,7 +1,13 @@
 # Homebrew.  Put this first, but then allow shims to be prepended later on.
 # M1 is using /opt/homebrew
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
-eval "$(/usr/local/bin/brew shellenv)"
+
+# M1 vs intel
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    #export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 #export PATH="$PATH:$HOME/.dotfiles/bin"
 mkdir -p ~/.bin_local
