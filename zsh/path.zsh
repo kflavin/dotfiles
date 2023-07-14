@@ -3,7 +3,8 @@
 
 # M1 vs intel
 # NOTE: This has caused some issues with nvm, because the path ends
-# up placed in front of it.
+# up placed in front of it.  I'm working around the issue by
+# uninstalling system node.
 if [[ -x /opt/homebrew/bin/brew ]]; then
     #export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
     eval "$(/opt/homebrew/bin/brew shellenv)"
