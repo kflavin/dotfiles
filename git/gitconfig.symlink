@@ -13,7 +13,8 @@
     dry-merge = "!f() { git merge-tree `git merge-base $2 $1` $2 $1; }; f"
 	fa = fetch --all
     ff = log --follow -p --
-    fh = file-history
+    fh2 = file-history
+    fh = log --follow --format='%h %ai %an' -- 
     fu = fetch upstream
     fmu = !git fetch upstream && git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	find = !git log --color -p -S 
