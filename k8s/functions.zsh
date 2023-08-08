@@ -31,7 +31,10 @@ function privip() {
 }
 
 function helmuninstall() {
-    helm -n $1 uninstall --wait backend && helm -n $1 uninstall deps && kubectl delete ns $1
+    ( helm -n $1 uninstall --wait backend || true ) && \
+      ( helm -n $1 uninstall --wait rxv-services || true ) && \
+      ( helm -n $1 uninstall deps || true ) && \
+      kubectl delete ns $1
 }
 
 
