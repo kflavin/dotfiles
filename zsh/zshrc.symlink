@@ -96,4 +96,4 @@ if [ -f '~/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '~/Downloads
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
-source ~/.docker/init-zsh.sh || true # Added by Docker Desktop
+[ -f ~/.docker/init-zsh.sh ] && source ~/.docker/init-zsh.sh || true # Added by Docker Desktop
