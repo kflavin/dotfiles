@@ -276,6 +276,6 @@ set mmp=5000
 " custom commands
 """""""""""""""""""
 " wg = wrangler deploy
-command! Wg !wrangler deploy
-nnoremap wg :Wg<CR>
+command! Wd !wrangler deploy
+nnoremap <leader>wd :Wd<CR>
 
