@@ -270,3 +270,12 @@ noremap <Leader>/ :Commentary<cr>
 
 " Set maxmempattern for regex that take a lot of memory
 set mmp=5000
+
+
+"""""""""""""""""""
+" custom commands
+"""""""""""""""""""
+" wg = wrangler deploy
+command! Wg !wrangler deploy
+nnoremap wg :Wg<CR>
+
