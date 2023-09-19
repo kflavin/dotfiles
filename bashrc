@@ -41,10 +41,6 @@ function cdp {
 # Django
 source ~/bin/make_django_project
 
-# RVM
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-source ~/.rvm/scripts/rvm
-
 # Go
 export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
