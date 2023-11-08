@@ -10,6 +10,7 @@
 	cp = cherry-pick
 	current-branch = rev-parse --abbrev-ref HEAD
 	d = diff
+    delete-merged = branch --delete $(git branch --merged master --no-contains master --format='%(refname:short)')
     dry-merge = "!f() { git merge-tree `git merge-base $2 $1` $2 $1; }; f"
 	fa = fetch --all
     ff = log --follow -p --
@@ -20,16 +21,18 @@
 	find = !git log --color -p -S 
 	glog = log -E -i --grep
 	issues = !hub browse -- issues
-    recentbr = for-each-ref --sort=committerdate --format='"%(objectname) %(objecttype)%09%(refname:short)"' refs/heads/
+    merged = branch --merged master --no-contains master --format='%(refname:short)'
 	mup = !git checkout master && git pull && git checkout -
     mu = !git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	pushf = push --force-with-lease
+    recentbr = for-each-ref --sort=committerdate --format='"%(objectname) %(objecttype)%09%(refname:short)"' refs/heads/
     rh = reset --hard
 	rim = !git rebase --interactive $(git merge-base master HEAD)
 	rium = !git fetch upstream && git rebase --interactive upstream/master
 	sl = log --date=format:'%D %T' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ad%C(reset)] %s' --graph
 	sla = log --oneline --decorate --graph --all
 	uncommit = reset --soft HEAD^
+    unmerged = branch --no-merged master --no-contains master --format='%(refname:short)'
 	unstage = reset
 	upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
 	ureset = !git upstream && git reset --hard $(git upstream)
