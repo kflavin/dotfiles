@@ -11,6 +11,8 @@ config_files=($DOTFILES/**/*.zsh)
 if [[ -a ~/.localrc ]]
 then
     source ~/.localrc
+    source ~/.localrc_*
+    echo Sourcing additional files: ~/.localrc_*
 fi
 
 # load the path files first
