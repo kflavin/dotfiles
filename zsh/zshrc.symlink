@@ -12,7 +12,7 @@ if [[ -a ~/.localrc ]]
 then
     source ~/.localrc
     source ~/.localrc_*
-    echo Sourcing additional files: ~/.localrc_*
+    ls ~/.localrc_* >/dev/null 2>&1 && echo "Sourcing files:" ~/.localrc_*
 fi
 
 # load the path files first
