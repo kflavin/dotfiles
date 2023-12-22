@@ -24,7 +24,16 @@ alias byns-all="kubectl get pod -o=custom-columns=NS:.metadata.namespace,NAME:.m
 
 
 #alias nodes='kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone"'
-alias nodes='kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone,ID:.metadata.annotations.csi\.volume\.kubernetes\.io\/nodeid" | sed -E "s/{\"efs.csi.aws.com\":\"(i-[^\"]*)\"}/\1/"'
+# old alias with rolenames
+#alias nodes='kubectl get nodes --sort-by=".metadata.labels.alpha\.eksctl\.io\/nodegroup-name" -o="custom-columns=NAME:.metadata.name,UNSCHEDULABLE:.spec.unschedulable,VERSION:.status.nodeInfo.kubeletVersion,ROLE:.spec.taints[].value,NODEGROUP:.metadata.labels.alpha\.eksctl\.io\/nodegroup-name,INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,AZ:.metadata.labels.topology\.kubernetes\.io\/zone,ID:.metadata.annotations.csi\.volume\.kubernetes\.io\/nodeid" | sed -E "s/{\"efs.csi.aws.com\":\"(i-[^\"]*)\"}/\1/"'
+alias nodes='kubectl get nodes -o="custom-columns=\
+NAME:.metadata.name,\
+UNSCHEDULABLE:.spec.unschedulable,\
+VERSION:.status.nodeInfo.kubeletVersion,\
+INSTANCE_TYPE:.metadata.labels.node\.kubernetes\.io\/instance-type,\
+AZ_ZONE:.topology.ebs.csi.aws.com\/zone,\
+AZ_TOPO:.metadata.labels.topology\.kubernetes\.io\/zone,\
+ID:.metadata.annotations.csi\.volume\.kubernetes\.io\/nodeid" | sed -E "s/{\"ebs.csi.aws.com\":\"(i-[^\"]*)\"}/\1/"'
 
 
 # EKS Add on versions
