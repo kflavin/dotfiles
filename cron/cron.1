@@ -1,0 +1,3 @@
+# Save history file every hour, if there has been more history added
+*/15 * * * *  if [[ $(cat $HOME/.zsh_history | wc -l) -gt $(cat $HOME/.zsh_history_backup | wc -l) ]]; then cp $HOME/.zsh_history $HOME/.zsh_history_backup; cp $HOME/.zsh_history $HOME/.zsh_history_backup_"$(date '+%Y-%m-%d_%H:%M:%S')"; find $HOME -maxdepth 1 -name ".zsh_history_backup_*" | sort -r | tail -n +200 | xargs -I{} rm {}; fi
+
