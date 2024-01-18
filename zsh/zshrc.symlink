@@ -5,6 +5,13 @@ export DOTFILES=$HOME/.dotfiles
 typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
 
+# Warn me if ZSH history got truncated
+if [[ $(cat ~/.zsh_history | wc -l) -lt $(cat ~/.zsh_history_backup | wc -l) ]]; then
+    echo "*** ZSH history backup is larger than history ***"
+    echo 'ls -l ~/.zsh_history*'
+    echo 'cp ~/.zsh_history_backup ~/.zsh_history'
+fi
+
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
