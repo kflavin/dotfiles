@@ -279,3 +279,5 @@ set mmp=5000
 command! Wd !wrangler deploy
 nnoremap <leader>wd :Wd<CR>
 
+" gb = git blame
+nnoremap <Leader>gb <C-w>n:0r !git blame #<cr>
