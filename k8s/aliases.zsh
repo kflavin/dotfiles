@@ -44,3 +44,5 @@ function ksetns {
     k get ns "$1" || return 1
     k config set-context --current --namespace="$1"
 }
+
+alias kgetns='kubectl config view --minify --output "jsonpath={..namespace}{\"\n\"}"'
