@@ -38,3 +38,9 @@ ID:.metadata.annotations.csi\.volume\.kubernetes\.io\/nodeid" | sed -E "s/{\"ebs
 
 # EKS Add on versions
 alias kaddons='k -n kube-system describe daemonset aws-node efs-csi-node kube-proxy | grep Image: | rev | cut -d/ -f1 | rev'
+
+
+function ksetns {
+    k get ns "$1" || return 1
+    k config set-context --current --namespace="$1"
+}
