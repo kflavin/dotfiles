@@ -14,6 +14,17 @@ alias kse="kubectl get secrets -A"
 alias kaa="kubectl get pods -A"
 alias kn="kubectl get nodes -o wide"
 
+# namespace specific
+alias kgi="kubectl get ingress"
+alias kgs="kubectl get services"
+alias kgd="kubectl get deploy"
+alias kkgr="kubectl get replicaset"
+alias kgds="kubectl get daemonsets"
+alias kgc="kubectl get configmap"
+alias kgs="kubectl get secrets"
+alias kgp="kubectl get pods"
+
+
 alias bynode="kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name,NS:.metadata.namespace --sort-by=.spec.nodeName -A | grep -v -E 'kube-system$|kubernetes-dashboard$|prometheus$|rxv-system$'"
 alias bypod="kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName,NS:.metadata.namespace --sort-by=.metadata.name -A | grep -v -E 'kube-system$|kubernetes-dashboard$|prometheus$|rxv-system$'"
 alias byns="kubectl get pod -o=custom-columns=NS:.metadata.namespace,NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName --sort-by=.metadata.namespace -A | grep -v -E '^kube-system|^kubernetes-dashboard|^prometheus|^rxv-system'"
