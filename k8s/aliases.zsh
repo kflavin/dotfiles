@@ -24,7 +24,7 @@ alias kgc="kubectl get configmap"
 alias kgs="kubectl get secrets"
 alias kgp="kubectl get pods"
 
-alias wkgp="kubectl get pods"
+alias wkgp="watch -n1 'kubectl get pods'"
 
 
 alias bynode="kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name,NS:.metadata.namespace --sort-by=.spec.nodeName -A | grep -v -E 'kube-system$|kubernetes-dashboard$|prometheus$|rxv-system$'"
