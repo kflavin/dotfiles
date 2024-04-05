@@ -26,6 +26,7 @@
     mu = !git merge upstream/$(git rev-parse --abbrev-ref HEAD)
 	pushf = push --force-with-lease
     recentbr = for-each-ref --sort=committerdate --format='"%(objectname) %(objecttype)%09%(refname:short)"' refs/heads/
+    rs = reset --soft
     rh = reset --hard
 	rim = !git rebase --interactive $(git merge-base master HEAD)
 	rium = !git fetch upstream && git rebase --interactive upstream/master
@@ -59,3 +60,5 @@
 	signingkey = 0685992BE2435608
 [gpg]
 	program = /usr/local/bin/gpg
+[diff]
+	renameLimit = 1351
