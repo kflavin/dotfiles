@@ -67,6 +67,8 @@ function krun() {
     #kubectl -n "${namespace}" run -it --rm --restart=Never --image "$image" $(uuidgen | cut -d- -f1 | tr 'A-Z' 'a-z') -- "$cmd"
     #bash -c "$c"
 
+    # To re-attach to a pod (pass -c for container): k -n default attach -it f685eeca
+
     command=("kubectl" "run" "-it" "--rm" "--restart=Never" "--image" "$image")
     if [[ -n "$namespace" ]]; then
         command+=("-n" "$namespace")
