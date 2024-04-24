@@ -24,6 +24,8 @@
     merged = branch --merged master --no-contains master --format='%(refname:short)'
 	mup = !git checkout master && git pull && git checkout -
     mu = !git merge upstream/$(git rev-parse --abbrev-ref HEAD)
+    po = push origin HEAD
+    pu = push upstream HEAD
 	pushf = push --force-with-lease
     recentbr = for-each-ref --sort=committerdate --format='"%(objectname) %(objecttype)%09%(refname:short)"' refs/heads/
     rs = reset --soft
