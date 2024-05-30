@@ -77,3 +77,80 @@ function krun() {
     "${command[@]}"
 }
 
+function krun2() {
+    namespace=""
+    image_type=${1}
+
+    while getopts ":n:" opt; do
+      case ${opt} in
+        n )
+          namespace="$OPTARG"
+          ;;
+        \? )
+          echo "Invalid option: $OPTARG" 1>&2
+          ;;
+        : )
+          echo "Invalid option: $OPTARG requires an argument" 1>&2
+          ;;
+      esac
+    done
+    shift $((OPTIND -1))
+
+    pod=$(kubectl get pods --namespace=$namespace | grep $1 | head -1 | cut -d" " -f1)
+    image=$(kubectl describe pod $pod --namespace=$namespace | grep Image: | head -1 | awk '{ print $2}')
+    echo "Starting from $image..."
+    krun -n $namespace "$image" $cmd
+}
+
+
+function krun3() {
+    if [[ -z $1 ]]; then
+        echo "Usage: $0 [-n namespace] <type> <command>"
+        return 1
+    fi
+    namespace=""
+
+    while getopts ":n:" opt; do
+      case ${opt} in
+        n )
+          namespace="$OPTARG"
+          ;;
+        \? )
+          echo "Invalid option: $OPTARG" 1>&2
+          ;;
+        : )
+          echo "Invalid option: $OPTARG requires an argument" 1>&2
+          ;;
+      esac
+    done
+    shift $((OPTIND -1))
+
+    type=$1
+    cmd=${2:-sh}
+
+    pod_name="one-off-$(uuidgen | cut -d- -f1 | tr 'A-Z' 'a-z')"
+    from_pod=$(kubectl --namespace=$namespace get pods | grep "$type" | head -1 | awk '{print $1}')
+
+    if [[ -z $from_pod ]]; then
+        echo "No pod exists for $type"
+        return 1
+    fi
+
+    container_spec=$(kubectl --namespace=$namespace get pod "$from_pod" -o json | jq -c '.spec.containers[0]')
+    env_vars=$(echo $container_spec | jq -c '.env')
+    image=$(echo $container_spec | jq -c -r '.image')
+    overrides=$(cat <<EOF
+{
+  "spec": {
+    "containers": [{
+      "name": "$pod_name",
+      "env": $env_vars
+    }]
+  }
+}
+EOF
+)
+
+    echo kubectl --namespace="$namespace" run "$pod_name" -it --rm --restart=Never --image "$image" --overrides="<..overrides..>" --override-type strategic -- $cmd
+    kubectl --namespace="$namespace" run "$pod_name" -it --rm --restart=Never --image "$image" --overrides="$overrides" --override-type strategic -- $cmd
+}
