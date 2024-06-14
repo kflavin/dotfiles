@@ -114,3 +114,8 @@ if [ -f '~/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '~/Downloads
 if [[ -n $SSH_CLIENT ]]; then
     export PS1="(ssh) $PS1"
 fi
+
+
+if [[ -x $(which direnv) ]]; then
+    eval "$(direnv hook zsh)"
+fi

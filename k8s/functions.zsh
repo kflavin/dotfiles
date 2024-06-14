@@ -43,12 +43,17 @@ function watchpods() {
 }
 
 function krun() {
+    # Starts a pod in a namespace, and can optionally mount a volume.
     namespace=""
+    volume=""
 
-    while getopts ":n:" opt; do
+    while getopts ":nv:" opt; do
       case ${opt} in
         n )
           namespace="$OPTARG"
+          ;;
+        v )
+          volume="$OPTARG"
           ;;
         \? )
           echo "Invalid option: $OPTARG" 1>&2
@@ -61,11 +66,44 @@ function krun() {
     shift $((OPTIND -1))
 
 
+
     image=${1:-alpine:latest}
     cmd=${2:-sh}
+    pod_name="one-off-$(uuidgen | cut -d- -f1 | tr 'A-Z' 'a-z')"
     #c=$(echo kubectl ${namespace}run -it --rm --restart=Never --image "$image" $(uuidgen | cut -d- -f1 | tr 'A-Z' 'a-z') -- "$cmd")
     #kubectl -n "${namespace}" run -it --rm --restart=Never --image "$image" $(uuidgen | cut -d- -f1 | tr 'A-Z' 'a-z') -- "$cmd"
     #bash -c "$c"
+
+    if [[ -n "$volume" ]]; then
+        override_spec='
+{
+    "spec": {
+        "volumes": [
+            {
+                "name": "'"$volume"'",
+                "persistentVolumeClaim": {
+                    "claimName": "'"$volume"'"
+                }
+            }
+        ],
+        "containers": [
+            {
+                "name": "'"$pod_name"'",
+                "image": "'"$image"'",
+                "stdin": true,
+                "tty": true,
+                "args": ["'"$cmd"'"],
+                "volumeMounts": [
+                    {
+                        "mountPath": "/data",
+                        "name": "'"$volume"'"
+                    }
+                ]
+            }
+        ]
+    }
+}'; fi
+
 
     # To re-attach to a pod (pass -c for container): k -n default attach -it f685eeca
 
@@ -73,7 +111,11 @@ function krun() {
     if [[ -n "$namespace" ]]; then
         command+=("-n" "$namespace")
     fi
-    command+=("$(uuidgen | cut -d- -f1 | tr 'A-Z' 'a-z')" "--" "$cmd")
+    if [[ -n "$volume" ]]; then
+        command+=("--overrides" "$override_spec")
+    fi
+    command+=("$pod_name" "--" "$cmd")
+    echo "$command"
     "${command[@]}"
 }
 
@@ -104,6 +146,8 @@ function krun2() {
 
 
 function krun3() {
+    # This one is good for replicating a pod with environment variables
+
     if [[ -z $1 ]]; then
         echo "Usage: $0 [-n namespace] <type> <command>"
         return 1
