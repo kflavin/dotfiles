@@ -47,7 +47,7 @@ function krun() {
     namespace=""
     volume=""
 
-    while getopts ":nv:" opt; do
+    while getopts ":n:v:" opt; do
       case ${opt} in
         n )
           namespace="$OPTARG"
@@ -64,6 +64,7 @@ function krun() {
       esac
     done
     shift $((OPTIND -1))
+    echo namespace is $namespace
 
 
 
@@ -107,7 +108,7 @@ function krun() {
 
     # To re-attach to a pod (pass -c for container): k -n default attach -it f685eeca
 
-    command=("kubectl" "run" "-it" "--rm" "--restart=Never" "--image" "$image")
+    command=("kubectl" "run" "-it" "--rm" "--restart=Never" "--labels=admission.datadoghq.com/enabled=false" "--image" "$image")
     if [[ -n "$namespace" ]]; then
         command+=("-n" "$namespace")
     fi

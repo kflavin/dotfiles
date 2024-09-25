@@ -29,7 +29,7 @@
 	pushf = push --force-with-lease
     recentbr = for-each-ref --sort=committerdate --format='"%(objectname) %(objecttype)%09%(refname:short)"' refs/heads/
     rs = reset --soft
-    rh = reset --hard
+    rh = "!f() { git stash && git reset --hard $@; }; f"
 	rim = !git rebase --interactive $(git merge-base master HEAD)
 	rium = !git fetch upstream && git rebase --interactive upstream/master
 	sl = log --date=format:'%D %T' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ad%C(reset)] %s' --graph
