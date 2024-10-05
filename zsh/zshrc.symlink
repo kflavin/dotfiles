@@ -109,7 +109,7 @@ if [ -f '~/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '~/Downloads
 # ruby 3.1.2
 # set a ./.tool-versions for a local version of ruby.
 # old #. /usr/local/opt/asdf/libexec/asdf.sh
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. "$(asdf info | grep ASDF_DIR | cut -d= -f2)/asdf.sh"
 
 
 if [[ -n $SSH_CLIENT ]]; then
